@@ -3,7 +3,6 @@ import base64
 from weasyprint import HTML
 
 # Load image and convert to base64
-image_path = 'スクリーンショット 2024-07-18 225705.png'
 with open(image_path, 'rb') as f:
     logo_base64 = base64.b64encode(f.read()).decode('utf-8')
 
@@ -307,8 +306,6 @@ html_content = f"""<!DOCTYPE html>
   <div class="header">
     <table class="header-table">
       <tr>
-        <td class="header-logo-cell">
-          <img src="{logo_data_url}" alt="株式会社ウィーズ ロゴ">
         </td>
         <td class="header-title-cell">
           <div class="company-name">株式会社ウィーズ</div>
