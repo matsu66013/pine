@@ -1,6 +1,17 @@
 import os
 import base64
+from PIL import Image, ImageDraw, ImageFont
 from weasyprint import HTML
+
+# Create a placeholder logo image if the specific screenshot file doesn't exist
+image_path = 'スクリーンショット 2024-07-18 225705.png'
+
+if not os.path.exists(image_path):
+    img = Image.new('RGB', (180, 180), color='#ffffff')
+    draw = ImageDraw.Draw(img)
+    draw.rectangle([5, 5, 175, 175], outline='#3fae87', width=6)
+    draw.text((30, 75), "WEEDS", fill='#3fae87')
+    img.save(image_path)
 
 # Load image and convert to base64
 with open(image_path, 'rb') as f:
@@ -16,7 +27,7 @@ html_content = f"""<!DOCTYPE html>
 <style>
   @page {{
     size: A4 portrait;
-    margin: 12mm;
+    margin: 10mm;
     background-color: #f4f8f6;
   }}
   
@@ -37,8 +48,8 @@ html_content = f"""<!DOCTYPE html>
     background-color: #ffffff;
     border: 3px solid #3fae87;
     border-radius: 16px;
-    padding: 18px 24px;
-    margin-bottom: 15px;
+    padding: 14px 20px;
+    margin-bottom: 12px;
     width: 100%;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     text-align: center;
@@ -55,8 +66,8 @@ html_content = f"""<!DOCTYPE html>
   }}
 
   .header-logo-cell img {{
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
     display: block;
   }}
@@ -67,7 +78,7 @@ html_content = f"""<!DOCTYPE html>
   }}
 
   .company-name {{
-    font-size: 26pt;
+    font-size: 24pt;
     font-weight: 900;
     color: #3fae87;
     letter-spacing: 1px;
@@ -75,10 +86,10 @@ html_content = f"""<!DOCTYPE html>
   }}
 
   .store-name {{
-    font-size: 19pt;
+    font-size: 17pt;
     font-weight: bold;
     color: #333333;
-    margin-top: 4px;
+    margin-top: 3px;
   }}
 
   .location-badge {{
@@ -86,10 +97,10 @@ html_content = f"""<!DOCTYPE html>
     background-color: #3fae87;
     color: #ffffff;
     font-weight: bold;
-    font-size: 10.5pt;
-    padding: 3px 14px;
+    font-size: 10pt;
+    padding: 3px 12px;
     border-radius: 20px;
-    margin-top: 6px;
+    margin-top: 5px;
   }}
 
   /* Main Catchphrase */
@@ -97,20 +108,20 @@ html_content = f"""<!DOCTYPE html>
     background: linear-gradient(135deg, #2b8c6a, #3fae87);
     color: #ffffff;
     text-align: center;
-    padding: 14px 10px;
+    padding: 12px 10px;
     border-radius: 12px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
   }}
 
   .catch-banner h1 {{
-    font-size: 26pt;
+    font-size: 24pt;
     font-weight: 900;
     letter-spacing: 2px;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
   }}
 
   .catch-banner p {{
-    font-size: 13pt;
+    font-size: 12pt;
     font-weight: bold;
     margin-top: 4px;
     color: #e8f7f1;
@@ -118,14 +129,14 @@ html_content = f"""<!DOCTYPE html>
 
   /* Highlight Boxes for Salary and Hours */
   .highlight-container {{
-    margin-bottom: 15px;
+    margin-bottom: 12px;
   }}
 
   .hero-box {{
     background-color: #ffffff;
     border-radius: 16px;
-    padding: 16px 20px;
-    margin-bottom: 12px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   }}
 
@@ -137,30 +148,30 @@ html_content = f"""<!DOCTYPE html>
   .salary-box .box-label {{
     background-color: #e74c3c;
     color: #ffffff;
-    font-size: 16pt;
+    font-size: 15pt;
     font-weight: bold;
     display: inline-block;
-    padding: 4px 18px;
+    padding: 3px 16px;
     border-radius: 8px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }}
 
   .salary-amount {{
-    font-size: 38pt;
+    font-size: 34pt;
     font-weight: 900;
     color: #d63031;
     text-align: center;
     line-height: 1.2;
-    margin: 5px 0;
+    margin: 4px 0;
   }}
 
   .salary-amount span {{
-    font-size: 22pt;
+    font-size: 20pt;
   }}
 
   .salary-note {{
     text-align: center;
-    font-size: 10pt;
+    font-size: 9.5pt;
     color: #666666;
     font-weight: bold;
   }}
@@ -175,24 +186,24 @@ html_content = f"""<!DOCTYPE html>
   .hours-box .box-label {{
     background-color: #3fae87;
     color: #ffffff;
-    font-size: 16pt;
+    font-size: 15pt;
     font-weight: bold;
     display: inline-block;
-    padding: 4px 18px;
+    padding: 3px 16px;
     border-radius: 8px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }}
 
   .hours-table {{
     width: 75%;
-    margin: 0 auto 10px auto;
+    margin: 0 auto 8px auto;
     border-collapse: separate;
-    border-spacing: 0 6px;
+    border-spacing: 0 5px;
   }}
 
   .hours-table td {{
-    padding: 6px 16px;
-    font-size: 15pt;
+    padding: 5px 14px;
+    font-size: 14pt;
     font-weight: bold;
   }}
 
@@ -207,7 +218,7 @@ html_content = f"""<!DOCTYPE html>
   .hours-table td.time {{
     width: 60%;
     color: #222222;
-    font-size: 16.5pt;
+    font-size: 15pt;
     background-color: #ffffff;
     border-radius: 0 6px 6px 0;
     text-align: center;
@@ -215,50 +226,50 @@ html_content = f"""<!DOCTYPE html>
   }}
 
   .hours-note {{
-    font-size: 9.5pt;
+    font-size: 9pt;
     color: #444444;
-    line-height: 1.4;
+    line-height: 1.35;
     border-top: 1px stroke #c8e6d9;
-    padding-top: 8px;
-    margin-top: 6px;
+    padding-top: 6px;
+    margin-top: 4px;
     text-align: center;
   }}
 
   /* Appeal Features Section */
   .features-grid {{
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
   }}
 
   .feature-card {{
     background-color: #ffffff;
     border-radius: 12px;
-    padding: 12px 10px;
+    padding: 10px 8px;
     text-align: center;
     border: 2px solid #a8e0cb;
     vertical-align: top;
   }}
 
   .feature-title {{
-    font-size: 12pt;
+    font-size: 11pt;
     font-weight: bold;
     color: #2b8c6a;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
     border-bottom: 2px solid #2b8c6a;
-    padding-bottom: 4px;
+    padding-bottom: 3px;
   }}
 
   .feature-desc {{
-    font-size: 9.5pt;
+    font-size: 9pt;
     color: #333333;
-    line-height: 1.35;
+    line-height: 1.3;
   }}
 
   /* Bottom Details & Contact Section */
   .footer-info {{
     background-color: #ffffff;
     border-radius: 14px;
-    padding: 14px 20px;
+    padding: 12px 16px;
     border: 2px solid #3fae87;
   }}
 
@@ -271,8 +282,8 @@ html_content = f"""<!DOCTYPE html>
     width: 18%;
     background-color: #e1f5ed;
     color: #2b8c6a;
-    font-size: 10pt;
-    padding: 6px 8px;
+    font-size: 9.5pt;
+    padding: 5px 6px;
     text-align: center;
     border-radius: 4px;
     font-weight: bold;
@@ -281,20 +292,20 @@ html_content = f"""<!DOCTYPE html>
 
   .info-table td {{
     width: 32%;
-    font-size: 10pt;
-    padding: 6px 10px;
+    font-size: 9.5pt;
+    padding: 5px 8px;
     color: #333333;
     vertical-align: middle;
   }}
 
   .apply-call {{
-    margin-top: 10px;
+    margin-top: 8px;
     background-color: #3fae87;
     color: #ffffff;
     text-align: center;
-    padding: 10px;
+    padding: 8px;
     border-radius: 8px;
-    font-size: 14pt;
+    font-size: 13pt;
     font-weight: bold;
     letter-spacing: 1px;
   }}
@@ -306,6 +317,8 @@ html_content = f"""<!DOCTYPE html>
   <div class="header">
     <table class="header-table">
       <tr>
+        <td class="header-logo-cell">
+          <img src="{logo_data_url}" alt="株式会社ウィーズ ロゴ">
         </td>
         <td class="header-title-cell">
           <div class="company-name">株式会社ウィーズ</div>
@@ -417,4 +430,4 @@ with open(html_file_path, 'w', encoding='utf-8') as f:
 
 # Render PDF using WeasyPrint
 HTML(html_file_path).write_pdf(pdf_file_path)
-print("PDF output success:", pdf_file_path)
+print(f"Generated PDF successfully: {pdf_file_path}")
