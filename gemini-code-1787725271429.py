@@ -331,10 +331,10 @@ html_content = f"""<!DOCTYPE html>
     <!-- Salary Box -->
     <div class="hero-box salary-box">
       <div style="text-align: center;">
-        <span class="box-label">想定給与</span>
+        <span class="box-label">給与</span>
       </div>
       <div class="salary-amount">
-        年収 500<span>万円</span> ～ 650<span>万円</span>
+        年収 450<span>万円</span> ～ 550<span>万円</span>
       </div>
       <div class="salary-note">※経験・ご年齢・前職給与等を考慮の上、ご面接後に決定いたします。</div>
     </div>
